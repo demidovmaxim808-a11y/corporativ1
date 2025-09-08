@@ -1,4 +1,4 @@
-﻿﻿using System;
+﻿using System;
 using System.Globalization;
 
 namespace calculator_c_sharp
@@ -40,21 +40,21 @@ namespace calculator_c_sharp
                         case "/":
                             if (num2 == 0)
                             {
-                                throw new DivideByZeroException("Error: Division by zero is not allowed!");
+                                throw new DivideByZeroException("Ошибка: Деление на ноль недопустимо!");
                             }
                             result = num1 / num2;
                             break;
                         case "%":
                             if (num2 == 0)
                             {
-                                throw new DivideByZeroException("Error: Division by zero in modulo operation!");
+                                throw new DivideByZeroException("Ошибка: Деление на ноль в операции взятия остатка!");
                             }
                             result = num1 % num2;
                             break;
                         case "r":
                             if (num1 == 0)
                             {
-                                throw new DivideByZeroException("Error: Cannot calculate reciprocal of zero!");
+                                throw new DivideByZeroException("Ошибка: Невозможно вычислить обратное значение нуля!");
                             }
                             result = 1 / num1;
                             break;
@@ -64,35 +64,35 @@ namespace calculator_c_sharp
                         case "q": 
                             if (num1 < 0)
                             {
-                                throw new ArgumentException("Error: Cannot calculate square root of negative number!");
+                                throw new ArgumentException("Ошибка: Невозможно вычислить квадратный корень из отрицательного числа!");
                             }
                             result = Math.Sqrt(num1);
                             break;
                         case "M+": // M+
                             memory += num1;
                             result = memory;
-                            Console.WriteLine($"Memory value: {FormatNumber(memory)}");
+                            Console.WriteLine($"Значение в памяти: {FormatNumber(memory)}");
                             break;
                         case "M-": // M-
                             memory -= num1;
                             result = memory;
-                            Console.WriteLine($"Memory value: {FormatNumber(memory)}");
+                            Console.WriteLine($"Значение в памяти: {FormatNumber(memory)}");
                             break;
                         case "MR": // MR
                             result = memory;
-                            Console.WriteLine($"Memory value: {FormatNumber(memory)}");
+                            Console.WriteLine($"Значение в памяти: {FormatNumber(memory)}");
                             break;
                         default:
-                            Console.WriteLine("Wrong input");
+                            Console.WriteLine("Неверный ввод");
                             continue;
                     }
                     
                     if (result < -10000000 || result > 10000000)
                     {
-                        throw new OverflowException($"Error: Result {result} is out of range (-10,000,000 to 10,000,000)!");
+                        throw new OverflowException("Ошибка: Результат выходит за допустимый диапазон (-10,000,000 до 10,000,000)!");
                     }
                     
-                    Console.WriteLine($"Result: {FormatNumber(result)}");
+                    Console.WriteLine($"Результат: {FormatNumber(result)}");
                 }
                 catch (Exception ex)
                 {
@@ -100,12 +100,12 @@ namespace calculator_c_sharp
                 }
                 
                 Console.ReadLine();
-                Console.Write("Вы хотите продолжить?(y/n):");
+                Console.Write("Хотите продолжить?(y/n):");
                 value = Console.ReadLine();
             }
             while (value == "y" || value == "Y");
             
-            Console.WriteLine("Goodbye!");
+            Console.WriteLine("До свидания!");
         }
         
         private static double ReadNumberWithLimit()
@@ -122,7 +122,7 @@ namespace calculator_c_sharp
                 string[] parts = input.Split('.');
                 if (parts.Length > 1 && parts[1].Length > 5)
                 {
-                    Console.WriteLine("Warning: More than 5 decimal places detected. Truncating to 5 decimal places.");
+                    Console.WriteLine("Предупреждение: Обнаружено более 5 знаков после запятой. Округляем до 5 знаков.");
                     input = parts[0] + "." + parts[1].Substring(0, 5);
                 }
             }
@@ -131,7 +131,7 @@ namespace calculator_c_sharp
                 string[] parts = input.Split(',');
                 if (parts.Length > 1 && parts[1].Length > 5)
                 {
-                    Console.WriteLine("Warning: More than 5 decimal places detected. Truncating to 5 decimal places.");
+                    Console.WriteLine("Предупреждение: Обнаружено более 5 знаков после запятой. Округляем до 5 знаков.");
                     input = parts[0] + "," + parts[1].Substring(0, 5);
                 }
             }
